@@ -5,25 +5,30 @@ export default function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEditClick(selectedButton) {
-    setIsEditing(!isEditing );
+    setIsEditing((editing) => !editing);
     /*Alterar entre os diferentes estados, false e true */
-    /* ?false : true*/
+    /* ?false : true
+     * !isEditing
+     * ao alterar um estado tendo em conta o estado anterior deve-se usar uma funçao e nao uma variavel com gatafunhos
+     */
   }
   let playerName = <span className="player-name">{name}</span>;
-  let buttonCaption = 'Edit';
+  let buttonCaption = "Edit";
 
   if (isEditing) {
-    playerName = <input type="text" required value = {name}></input>;
-    buttonCaption = 'Save';
+    playerName = <input type="text" required value={name}></input>;
+    buttonCaption = "Save";
   }
 
   return (
     <li>
       <span className="player">
         {playerName}
-        <span className="player-symbol">{symbol}</span> 
+        <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={handleEditClick}>{buttonCaption  /*isEditing ? 'Save : 'Edit' */}</button>
+      <button onClick={handleEditClick}>
+        {buttonCaption /*isEditing ? 'Save : 'Edit' */}
+      </button>
     </li>
   );
 }
