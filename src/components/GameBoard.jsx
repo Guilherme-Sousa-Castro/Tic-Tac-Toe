@@ -5,16 +5,17 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({onSelectSquare, activePlayerSymbol}) {
     const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
     function handleSelectSquare(rowIndex, colIndex){
         setGameBoard((prevGameBoard) => {
             const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            updatedBoard[rowIndex][colIndex] = 'X';
+            updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
             return updatedBoard;
         });
         //usamos o () => para atualizar o quadrado e nao apagar os quadrados que ja estavam preenchidos
+        onSelectSquare();/*Vindo da App */
     }
 
   return (
